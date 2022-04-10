@@ -120,6 +120,11 @@ public class Login extends JFrame {
 			public void mouseExited(MouseEvent e) {
 				lblNewLabel.setForeground(Color.WHITE);
 			}
+			public void mouseClicked(MouseEvent e) {
+				Login.this.dispose();
+				Dash D = new Dash();
+				D.setVisible(true);
+			}
 			
 		});
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -221,6 +226,7 @@ public class Login extends JFrame {
 		setUndecorated(true);
 		setLocationRelativeTo(null);
 	}
+	
 }
 
 
