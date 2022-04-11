@@ -50,6 +50,8 @@ public class AddCrops extends JFrame {
 	private JTextField textField_27;
 	private JTextField textField_28;
 	private JButton btnCancel;
+	private JLabel ldlabel;
+	private JTextField textFieldid;
 
 	/**
 	 * Launch the application.
@@ -71,6 +73,9 @@ public class AddCrops extends JFrame {
 	 * Create the frame.
 	 */
 	public AddCrops() {
+		
+		//creating methods for lables and textfields
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 700);
 		//setUndecorated(true);
@@ -248,7 +253,7 @@ public class AddCrops extends JFrame {
 		textField_28.setBounds(521, 430, 144, 25);
 		contentPane.add(textField_28);
 		
-		JButton btnNewButton = new JButton("Save");
+		JButton btnNewButton = new JButton("Save");             //creating save button
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -262,7 +267,7 @@ public class AddCrops extends JFrame {
 		btnNewButton.setBounds(454, 522, 89, 23);
 		contentPane.add(btnNewButton);
 		
-		btnCancel = new JButton("Cancel");
+		btnCancel = new JButton("Cancel");                      //creating cancel button 
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(e.getSource()==btnCancel) {
@@ -272,5 +277,20 @@ public class AddCrops extends JFrame {
 		});
 		btnCancel.setBounds(576, 522, 89, 23);
 		contentPane.add(btnCancel);
+		
+		JLabel label = new JLabel("New label");
+		label.setBounds(111, 35, 89, -4);
+		contentPane.add(label);
+		
+		ldlabel = new JLabel("Insert Id Here to fill forms");
+		ldlabel.setFont(new Font("Calibri", Font.PLAIN, 20));
+		ldlabel.setForeground(Color.WHITE);
+		ldlabel.setBounds(56, 0, 308, 31);
+		contentPane.add(ldlabel);
+		
+		textFieldid = new JTextField();
+		textFieldid.setColumns(10);
+		textFieldid.setBounds(63, 33, 144, 25);
+		contentPane.add(textFieldid);
 	}
 }
