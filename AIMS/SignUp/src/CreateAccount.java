@@ -19,14 +19,14 @@ public class CreateAccount extends JFrame {
 	private JPanel contentPane;
 	private JTextField Back;
 	private JTextField textField;
-	private JPasswordField passwordField;
 	private JTextField textField_1;
-	private JPasswordField passwordField_1;
 	private JPasswordField passwordField_2;
 	private JPasswordField passwordField_3;
-	private JPasswordField passwordField_4;
-	private JPasswordField passwordField_5;
 	private JTextField txtCreateFreeAccount;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
 
 	/**
 	 * Launch the application.
@@ -136,7 +136,7 @@ public class CreateAccount extends JFrame {
 		textField.setFont(new Font("Arial", Font.PLAIN, 14));
 		textField.setColumns(10);
 		textField.setBackground(new Color(255, 250, 250));
-		textField.setBounds(45, 97, 290, 40);
+		textField.setBounds(45, 185, 290, 40);
 		panel1.add(textField);
 		
 		//password
@@ -169,11 +169,6 @@ public class CreateAccount extends JFrame {
 		lblRegister.setBounds(0, 3, 290, 37);
 		panel_1.add(lblRegister);
 		
-		passwordField = new JPasswordField();
-		passwordField.setBackground(new Color(255, 250, 250));
-		passwordField.setBounds(45, 181, 290, 40);
-		panel1.add(passwordField);
-		
 		JLabel lblNewLabel_2_2 = new JLabel("Last Name");
 		lblNewLabel_2_2.setForeground(Color.ORANGE);
 		lblNewLabel_2_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -189,11 +184,6 @@ public class CreateAccount extends JFrame {
 		textField_1.setBounds(417, 97, 290, 40);
 		panel1.add(textField_1);
 		
-		passwordField_1 = new JPasswordField();
-		passwordField_1.setBackground(new Color(255, 250, 250));
-		passwordField_1.setBounds(417, 181, 290, 40);
-		panel1.add(passwordField_1);
-		
 		passwordField_2 = new JPasswordField();
 		passwordField_2.setBackground(new Color(255, 250, 250));
 		passwordField_2.setBounds(45, 267, 290, 40);
@@ -203,16 +193,6 @@ public class CreateAccount extends JFrame {
 		passwordField_3.setBackground(new Color(255, 250, 250));
 		passwordField_3.setBounds(417, 267, 290, 40);
 		panel1.add(passwordField_3);
-		
-		passwordField_4 = new JPasswordField();
-		passwordField_4.setBackground(new Color(255, 250, 250));
-		passwordField_4.setBounds(45, 351, 290, 40);
-		panel1.add(passwordField_4);
-		
-		passwordField_5 = new JPasswordField();
-		passwordField_5.setBackground(new Color(255, 250, 250));
-		passwordField_5.setBounds(45, 435, 290, 40);
-		panel1.add(passwordField_5);
 		
 		JLabel lblNewLabel_2_1_1 = new JLabel("Password");
 		lblNewLabel_2_1_1.setForeground(Color.ORANGE);
@@ -274,6 +254,42 @@ public class CreateAccount extends JFrame {
 		rdbtnFemale.setBackground(new Color(255, 240, 245));
 		rdbtnFemale.setBounds(493, 360, 103, 21);
 		panel1.add(rdbtnFemale);
+		
+		textField_2 = new JTextField();
+		textField_2.setName("username");
+		textField_2.setForeground(Color.BLACK);
+		textField_2.setFont(new Font("Arial", Font.PLAIN, 14));
+		textField_2.setColumns(10);
+		textField_2.setBackground(new Color(255, 250, 250));
+		textField_2.setBounds(45, 99, 290, 40);
+		panel1.add(textField_2);
+		
+		textField_3 = new JTextField();
+		textField_3.setName("username");
+		textField_3.setForeground(Color.BLACK);
+		textField_3.setFont(new Font("Arial", Font.PLAIN, 14));
+		textField_3.setColumns(10);
+		textField_3.setBackground(new Color(255, 250, 250));
+		textField_3.setBounds(417, 185, 290, 40);
+		panel1.add(textField_3);
+		
+		textField_4 = new JTextField();
+		textField_4.setName("username");
+		textField_4.setForeground(Color.BLACK);
+		textField_4.setFont(new Font("Arial", Font.PLAIN, 14));
+		textField_4.setColumns(10);
+		textField_4.setBackground(new Color(255, 250, 250));
+		textField_4.setBounds(45, 353, 290, 40);
+		panel1.add(textField_4);
+		
+		textField_5 = new JTextField();
+		textField_5.setName("username");
+		textField_5.setForeground(Color.BLACK);
+		textField_5.setFont(new Font("Arial", Font.PLAIN, 14));
+		textField_5.setColumns(10);
+		textField_5.setBackground(new Color(255, 250, 250));
+		textField_5.setBounds(45, 435, 290, 40);
+		panel1.add(textField_5);
 		
 		
 	}
