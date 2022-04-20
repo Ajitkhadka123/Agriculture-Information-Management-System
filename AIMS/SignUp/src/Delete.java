@@ -47,7 +47,7 @@ public class Delete {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(255, 255, 153));
+		frame.getContentPane().setBackground(new Color(205,92,92));
 		frame.setBounds(100, 100, 626, 397);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -56,7 +56,7 @@ public class Delete {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					MainPage main = new MainPage();
+					AdminDashboard main = new AdminDashboard();
 					main.frame.setVisible(true);
 					frame.setVisible(false);
 				} catch (Exception e2) {
@@ -85,7 +85,7 @@ public class Delete {
 		
 		JLabel lblUserId = new JLabel("User Id");
 		lblUserId.setFont(new Font("Triumvirate Cond", Font.BOLD, 15));
-		lblUserId.setBounds(203, 71, 45, 13);
+		lblUserId.setBounds(203, 71, 85, 13);
 		frame.getContentPane().add(lblUserId);
 		
 		JLabel lblUsername = new JLabel("Username");
@@ -113,7 +113,7 @@ public class Delete {
 			}
 		});
 		btnDelete.setFont(new Font("Triumvirate Cond", Font.BOLD, 15));
-		btnDelete.setBounds(203, 269, 85, 33);
+		btnDelete.setBounds(191, 269, 85, 33);
 		frame.getContentPane().add(btnDelete);
 		
 		JButton btnClear = new JButton("Clear");
@@ -125,7 +125,7 @@ public class Delete {
 			}
 		});
 		btnClear.setFont(new Font("Triumvirate Cond", Font.BOLD, 15));
-		btnClear.setBounds(325, 269, 85, 33);
+		btnClear.setBounds(316, 269, 85, 33);
 		frame.getContentPane().add(btnClear);
 	}
 
