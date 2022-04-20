@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class Edit {
 
@@ -53,7 +54,7 @@ public class Edit {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(255, 255, 153));
+		frame.getContentPane().setBackground(new Color(205,92,92));
 		frame.setBounds(100, 100, 626, 397);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -62,7 +63,7 @@ public class Edit {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					MainPage main = new MainPage();
+					AdminDashboard main = new AdminDashboard();
 					main.frame.setVisible(true);
 					frame.setVisible(false);
 				} catch (Exception e2) {
@@ -77,34 +78,37 @@ public class Edit {
 		usertextField = new JTextField();
 		usertextField.setFont(new Font("Triumvirate Cond", Font.PLAIN, 13));
 		usertextField.setColumns(10);
-		usertextField.setBounds(203, 146, 183, 25);
+		usertextField.setBounds(203, 168, 183, 25);
 		frame.getContentPane().add(usertextField);
 		
 		JLabel lblUsername = new JLabel("Username");
+		lblUsername.setForeground(Color.WHITE);
 		lblUsername.setFont(new Font("Triumvirate Cond", Font.BOLD, 15));
-		lblUsername.setBounds(203, 126, 71, 13);
+		lblUsername.setBounds(203, 145, 126, 13);
 		frame.getContentPane().add(lblUsername);
 		
 		IdtextField = new JTextField();
 		IdtextField.setFont(new Font("Triumvirate Cond", Font.PLAIN, 13));
 		IdtextField.setColumns(10);
-		IdtextField.setBounds(203, 91, 183, 25);
+		IdtextField.setBounds(203, 110, 183, 25);
 		frame.getContentPane().add(IdtextField);
 		
 		JLabel lblUserId = new JLabel("User Id");
+		lblUserId.setForeground(Color.WHITE);
 		lblUserId.setFont(new Font("Triumvirate Cond", Font.BOLD, 15));
-		lblUserId.setBounds(203, 71, 45, 13);
+		lblUserId.setBounds(203, 87, 96, 13);
 		frame.getContentPane().add(lblUserId);
 		
 		JLabel lblPassword = new JLabel("Password");
+		lblPassword.setForeground(Color.WHITE);
 		lblPassword.setFont(new Font("Triumvirate Cond", Font.BOLD, 15));
-		lblPassword.setBounds(203, 185, 85, 13);
+		lblPassword.setBounds(203, 197, 85, 13);
 		frame.getContentPane().add(lblPassword);
 		
 		passtextField = new JTextField();
 		passtextField.setFont(new Font("Triumvirate Cond", Font.PLAIN, 13));
 		passtextField.setColumns(10);
-		passtextField.setBounds(203, 205, 183, 25);
+		passtextField.setBounds(203, 220, 183, 25);
 		frame.getContentPane().add(passtextField);
 		
 		JButton btnEdit = new JButton("Edit");
@@ -121,7 +125,7 @@ public class Edit {
 			}
 		});
 		btnEdit.setFont(new Font("Triumvirate Cond", Font.BOLD, 15));
-		btnEdit.setBounds(203, 269, 85, 33);
+		btnEdit.setBounds(203, 282, 85, 33);
 		frame.getContentPane().add(btnEdit);
 		
 		JButton btnClear = new JButton("Clear");
@@ -133,8 +137,7 @@ public class Edit {
 			}
 		});
 		btnClear.setFont(new Font("Triumvirate Cond", Font.BOLD, 15));
-		btnClear.setBounds(325, 269, 85, 33);
+		btnClear.setBounds(301, 282, 85, 33);
 		frame.getContentPane().add(btnClear);
 	}
-
 }
