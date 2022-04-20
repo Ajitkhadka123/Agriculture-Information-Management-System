@@ -46,7 +46,7 @@ public class ViewPage {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(255, 255, 153));
+		frame.getContentPane().setBackground(new Color(205,92,92));
 		frame.setBounds(100, 100, 717, 445);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -55,7 +55,7 @@ public class ViewPage {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					MainPage main = new MainPage();
+					AdminDashboard main = new AdminDashboard();
 					main.frame.setVisible(true);
 					frame.setVisible(false);
 				} catch (Exception e2) {
@@ -81,7 +81,7 @@ public class ViewPage {
 			}
 		});
 		btnRefresh.setFont(new Font("Triumvirate Cond", Font.BOLD, 15));
-		btnRefresh.setBounds(162, 343, 85, 33);
+		btnRefresh.setBounds(162, 343, 106, 33);
 		frame.getContentPane().add(btnRefresh);
 		
 		JButton btnClear = new JButton("Clear");
