@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -19,13 +18,14 @@ import javax.swing.border.LineBorder;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 import java.awt.Dimension;
 import java.awt.Component;
 import java.awt.Rectangle;
 
 public class Dash extends JFrame {
      //inserting image
-	private Image img_logo = new ImageIcon(UserLogin.class.getResource("img/corpslogo.png")).getImage().getScaledInstance(90,90, Image.SCALE_SMOOTH);
+	private Image img_logo = new ImageIcon(MainLogin.class.getResource("img/corpslogo.png")).getImage().getScaledInstance(90,90, Image.SCALE_SMOOTH);
     
 	private JPanel contentPane;
 	private JTextField Fname;
@@ -39,6 +39,12 @@ public class Dash extends JFrame {
 	private JTextField textField;
 	private JButton btnCancel;
 	private JTextField Back;
+	
+	//generating random numbers
+    Random ran = new Random();
+    long first4 = (ran.nextLong() % 9000L) + 1000L;
+    long first = Math.abs(first4); // abs for on positive numbers
+
 	
 
 	/**
@@ -142,6 +148,7 @@ public class Dash extends JFrame {
 		textField = new JTextField();
 		textField.setColumns(10);
 		textField.setBounds(487, 354, 200, 31);
+		textField.setText("1533"+first);
 		contentPane.add(textField);
 		
 		JPanel panel = new JPanel();
@@ -242,7 +249,7 @@ public class Dash extends JFrame {
 			
 		});
 		IbllconLogo.setHorizontalAlignment(SwingConstants.CENTER);
-		IbllconLogo.setIcon(new ImageIcon(img_logo));
+	    IbllconLogo.setIcon(new ImageIcon(img_logo));
 		
 		
 	}
