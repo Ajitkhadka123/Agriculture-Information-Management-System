@@ -44,7 +44,7 @@ public class AdminSection {
 			public void run() {
 				try {
 					AdminSection window = new AdminSection();
-					window.frame.setVisible(true);
+					window.getFrame().setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -63,15 +63,16 @@ public class AdminSection {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 811, 599);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		setFrame(new JFrame());
+		getFrame().setResizable(false);
+		getFrame().setBounds(100, 100, 811, 599);
+		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getFrame().getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(0, 128, 0));
+		panel.setBackground(new Color(85, 107, 47));
 		panel.setBounds(0, 0, 805, 571);
-		frame.getContentPane().add(panel);
+		getFrame().getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel province = new JLabel("Province");
@@ -150,7 +151,7 @@ public class AdminSection {
 				crop.setText(model.getValueAt(i, 2).toString());
 				mkrate.setText(model.getValueAt(i, 3).toString());
 				fmrate.setText(model.getValueAt(i, 4).toString());
-				JOptionPane.showMessageDialog(null,"Updated");
+				
 				
 			}
 		});
@@ -195,6 +196,7 @@ public class AdminSection {
 				model.setValueAt(crop.getText(), i ,2);
 				model.setValueAt(mkrate.getText(), i ,3);
 				model.setValueAt(fmrate.getText(), i ,4);
+				JOptionPane.showMessageDialog(null,"Updated");
 				
 				
 				
@@ -233,5 +235,18 @@ public class AdminSection {
 		AIMS.setForeground(new Color(255, 255, 0));
 		AIMS.setBounds(141, 27, 627, 46);
 		panel.add(AIMS);
+	}
+
+	public void setVisible(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
 	}
 }
