@@ -3,13 +3,12 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import javax.swing.JOptionPane;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -19,9 +18,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 import javax.swing.Box;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -29,11 +28,12 @@ import javax.swing.JTable;
 public class AddCrops extends JFrame {
 
 	private JPanel contentPane;
-	private JButton btnCancel;
+	private JFrame frame;
 	private JTextField CropTextfield;
 	private JTextField FarmerR;
-	private JTextField textField_3;
+	private JTextField MarketB;
 	private JTextField Back;
+	DefaultTableModel model;
 	private JTable table;
 	/**
 	 * Launch the application.
@@ -105,31 +105,8 @@ public class AddCrops extends JFrame {
 			
 			}
 		});
-		PrintButton.setBounds(548, 283, 89, 31);
+		PrintButton.setBounds(774, 111, 89, 31);
 		contentPane.add(PrintButton);
-		
-		// delete button
-		btnCancel = new JButton("Delete");                      
-		btnCancel.addMouseListener(new MouseAdapter() {
-			
-			public void mouseEntered(MouseEvent e) {
-				btnCancel.setForeground(Color.RED);
-				
-			}
-	
-			public void mouseExited(MouseEvent e) {
-				btnCancel.setForeground(Color.BLACK);
-			}
-		
-		});
-		btnCancel.setFont(new Font("Arial", Font.BOLD, 14));
-		btnCancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
-		btnCancel.setBounds(774, 283, 89, 31);
-		contentPane.add(btnCancel);
 		
 		JLabel label = new JLabel("New label");
 		label.setBounds(111, 35, 89, -4);
@@ -141,23 +118,17 @@ public class AddCrops extends JFrame {
 		lblCrops_1.setBounds(38, 182, 71, 25);
 		contentPane.add(lblCrops_1);
 		
-		CropTextfield = new JTextField();
-		CropTextfield.setFont(new Font("Arial", Font.PLAIN, 16));
-		CropTextfield.setColumns(10);
-		CropTextfield.setBounds(38, 217, 200, 31);
-		contentPane.add(CropTextfield);
-		
 		FarmerR = new JTextField();
 		FarmerR.setFont(new Font("Arial", Font.PLAIN, 16));
 		FarmerR.setColumns(10);
 		FarmerR.setBounds(478, 217, 175, 31);
 		contentPane.add(FarmerR);
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Arial", Font.PLAIN, 16));
-		textField_3.setColumns(10);
-		textField_3.setBounds(688, 217, 175, 31);
-		contentPane.add(textField_3);
+		MarketB = new JTextField();
+		MarketB.setFont(new Font("Arial", Font.PLAIN, 16));
+		MarketB.setColumns(10);
+		MarketB.setBounds(688, 217, 175, 31);
+		contentPane.add(MarketB);
 		
 		JComboBox comboBoxP = new JComboBox();
 		comboBoxP.setModel(new DefaultComboBoxModel(new String[] {"Kilogram ", "Gram", "Miligram", "Pound", "Ton"}));
@@ -168,7 +139,7 @@ public class AddCrops extends JFrame {
 		JLabel lblAddCropSection = new JLabel("Add Crop Section");
 		lblAddCropSection.setForeground(Color.WHITE);
 		lblAddCropSection.setFont(new Font("Arial", Font.BOLD, 28));
-		lblAddCropSection.setBounds(342, 16, 247, 58);
+		lblAddCropSection.setBounds(337, 17, 247, 58);
 		contentPane.add(lblAddCropSection);
 		
 		Box verticalBox = Box.createVerticalBox();
@@ -176,6 +147,122 @@ public class AddCrops extends JFrame {
 		verticalBox.setBackground(new Color(255, 215, 0));
 		verticalBox.setBounds(0, 85, 886, 3);
 		contentPane.add(verticalBox);
+
+		
+		CropTextfield = new JTextField();
+		CropTextfield.setBounds(38, 220, 175, 29);
+		contentPane.add(CropTextfield);
+		CropTextfield.setColumns(10);
+		
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(38, 335, 825, 318);
+		contentPane.add(scrollPane);
+		
+		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				int i = table.getSelectedRow();
+//				comboBoxP.setText(model.getValueAt(i, 0).toString());
+				CropTextfield.setText(model.getValueAt(i, 1).toString());
+				FarmerR.setText(model.getValueAt(i, 2).toString());
+				MarketB.setText(model.getValueAt(i, 3).toString());
+				
+				
+			}
+		});
+		model = new DefaultTableModel();
+		Object[] column = {"Province","Municipality","Crops","Market Rate","Farmers rate"};
+		final Object[] row = new Object[4];
+		model.setColumnIdentifiers(column);
+		table.setModel(model);
+		scrollPane.setViewportView(table);
+		
+		JButton btnNewButton = new JButton("Add");
+		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+//				row[0]= comboBoxP.getText();
+				row[1]= CropTextfield.getText();
+				row[2]= FarmerR.getText();
+				row[3]= MarketB.getText();
+				model.addRow(row);
+				
+//				comboBoxP.setText("");
+				CropTextfield.setText("");
+				FarmerR.setText("");
+				MarketB.setText("");
+				JOptionPane.showMessageDialog(null,"Saved");
+				}catch(Exception E) {
+					System.out.println(E);
+				}
+			}
+		});
+		btnNewButton.setBounds(38, 282, 89, 31);
+		contentPane.add(btnNewButton);
+		
+      //Update 	
+		JButton btnUpdate = new JButton("Update");
+		btnUpdate.setFont(new Font("Arial", Font.BOLD, 14));
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i = table.getSelectedRow();
+//				model.setValueAt(comboBoxP.getText(), i ,0);
+				model.setValueAt(CropTextfield.getText(), i ,1);
+				model.setValueAt(FarmerR.getText(), i ,2);
+				model.setValueAt(MarketB.getText(), i ,3);
+				JOptionPane.showMessageDialog(null,"Updated");
+				
+				
+				
+			}
+		});
+		btnUpdate.setBounds(151, 282, 89, 31);
+		contentPane.add(btnUpdate);
+		
+		JButton btnDelete = new JButton("Delete");
+		btnDelete.setFont(new Font("Arial", Font.BOLD, 14));
+		btnDelete.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int i = table.getSelectedRow();
+				model.removeRow(i);
+				JOptionPane.showMessageDialog(null,"Deleted");
+			}
+		});
+		btnDelete.setBounds(774, 283, 89, 32);
+		contentPane.add(btnDelete);
+		
+		JButton btnClearl = new JButton("Clear");
+		btnClearl.setFont(new Font("Arial", Font.BOLD, 14));
+		btnClearl.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+//				comboBoxP.setText("");
+				CropTextfield.setText("");
+				FarmerR.setText("");
+				MarketB.setText("");
+				JOptionPane.showMessageDialog(null,"Cleared");
+			}
+		});
+		btnClearl.setBounds(668, 283, 89, 31);
+		contentPane.add(btnClearl);
+	}
+
+	public void setVisible(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	
+	
+
 		
 		// back button
 		
@@ -196,6 +283,7 @@ public class AddCrops extends JFrame {
 				Back.setForeground(Color.ORANGE);
 			}
 		});
+		
 		Back.setFont(new Font("Tahoma", Font.BOLD, 33));
 		Back.setBorder(null);
 		Back.setForeground(Color.ORANGE);
@@ -216,51 +304,11 @@ public class AddCrops extends JFrame {
 		lblNewLabel_1_1.setBounds(38, 128, 760, 25);
 		contentPane.add(lblNewLabel_1_1);
 		
-		//add button 
 		
-		JButton btnAdd = new JButton("Add");
-		btnAdd.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				btnAdd.setForeground(Color.RED);
-				
-			}
-	
-			public void mouseExited(MouseEvent e) {
-				btnAdd.setForeground(Color.BLACK);
-			}
-		});
-		btnAdd.addActionListener(new ActionListener() {
-			DefaultListModel model = new DefaultListModel();
-			
-			public void actionPerformed(ActionEvent e) {
-				model.addElement(CropTextfield.getText());
-				list.setModel(model);
-			}
-		});
-		btnAdd.setFont(new Font("Arial", Font.BOLD, 14));
-		btnAdd.setBounds(663, 283, 89, 31);
-		contentPane.add(btnAdd);
 		
-		//save button
-		JButton SaveButton_1 = new JButton("Save");
-		SaveButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(e.getSource()==SaveButton_1) {
-					if(JOptionPane.showConfirmDialog(null, "Do you want Save Details?", "Confirmation", JOptionPane.YES_NO_OPTION) ==0) {
-						
-			
-		}}}});
-		SaveButton_1.setFont(new Font("Arial", Font.BOLD, 14));
-		SaveButton_1.setBounds(431, 283, 89, 31);
-		contentPane.add(SaveButton_1);
-		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(38, 339, 825, 301);
-		contentPane.add(scrollPane);
-		
-		table = new JTable();
-		scrollPane.setViewportView(table);
+		JList list = new JList();
+		list.setBounds(38, 349, 706, 284);
+		contentPane.add(list);
 		
 		
 	}
