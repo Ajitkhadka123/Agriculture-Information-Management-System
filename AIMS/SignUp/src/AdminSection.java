@@ -35,6 +35,8 @@ public class AdminSection {
 	private JTextField fmrate;
 	private JTable table;
 	DefaultTableModel model;
+	private JTextField nmfamily;
+	private JTextField fname;
 
 	/**
 	 * Launch the application.
@@ -65,69 +67,69 @@ public class AdminSection {
 	private void initialize() {
 		setFrame(new JFrame());
 		getFrame().setResizable(false);
-		getFrame().setBounds(100, 100, 811, 599);
+		getFrame().setBounds(100, 100, 953, 610);
 		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getFrame().getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(85, 107, 47));
-		panel.setBounds(0, 0, 805, 571);
+		panel.setBounds(0, 0, 947, 571);
 		getFrame().getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel province = new JLabel("Province");
 		province.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		province.setForeground(new Color(255, 255, 255));
-		province.setBounds(20, 120, 102, 27);
+		province.setBounds(20, 204, 102, 27);
 		panel.add(province);
 		
 		JLabel municipality = new JLabel("Municipality");
 		municipality.setForeground(Color.WHITE);
 		municipality.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		municipality.setBounds(20, 153, 102, 27);
+		municipality.setBounds(20, 237, 102, 27);
 		panel.add(municipality);
 		
 		JLabel crops = new JLabel("Crops");
 		crops.setForeground(Color.WHITE);
 		crops.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		crops.setBounds(20, 185, 102, 33);
+		crops.setBounds(20, 269, 102, 33);
 		panel.add(crops);
 		
 		JLabel marketrate = new JLabel("Market Rate");
 		marketrate.setForeground(Color.WHITE);
 		marketrate.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		marketrate.setBounds(20, 221, 102, 27);
+		marketrate.setBounds(20, 305, 102, 27);
 		panel.add(marketrate);
 		
 		JLabel Farmersrate = new JLabel("Farmer's Rate");
 		Farmersrate.setForeground(Color.WHITE);
 		Farmersrate.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		Farmersrate.setBounds(20, 256, 132, 27);
+		Farmersrate.setBounds(20, 340, 132, 27);
 		panel.add(Farmersrate);
 		
 		mun = new JTextField();
-		mun.setBounds(143, 153, 137, 29);
+		mun.setBounds(143, 237, 137, 29);
 		panel.add(mun);
 		mun.setColumns(10);
 		
 		prov = new JTextField();
 		prov.setColumns(10);
-		prov.setBounds(143, 120, 137, 27);
+		prov.setBounds(143, 204, 137, 27);
 		panel.add(prov);
 		
 		crop = new JTextField();
 		crop.setColumns(10);
-		crop.setBounds(143, 187, 137, 27);
+		crop.setBounds(143, 271, 137, 27);
 		panel.add(crop);
 		
 		mkrate = new JTextField();
 		mkrate.setColumns(10);
-		mkrate.setBounds(143, 221, 137, 27);
+		mkrate.setBounds(143, 305, 137, 27);
 		panel.add(mkrate);
 		
 		fmrate = new JTextField();
 		fmrate.setColumns(10);
-		fmrate.setBounds(143, 256, 137, 27);
+		fmrate.setBounds(143, 340, 137, 27);
 		panel.add(fmrate);
 		
 		JLabel IbllconLogo = new JLabel("");
@@ -138,7 +140,7 @@ public class AdminSection {
 
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(290, 120, 495, 406);
+		scrollPane.setBounds(290, 120, 637, 445);
 		panel.add(scrollPane);
 		
 		table = new JTable();
@@ -146,18 +148,20 @@ public class AdminSection {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int i = table.getSelectedRow();
-				prov.setText(model.getValueAt(i, 0).toString());
-				mun.setText(model.getValueAt(i, 1).toString());
-				crop.setText(model.getValueAt(i, 2).toString());
-				mkrate.setText(model.getValueAt(i, 3).toString());
-				fmrate.setText(model.getValueAt(i, 4).toString());
+				fname.setText(model.getValueAt(i, 0).toString());
+				nmfamily.setText(model.getValueAt(i, 1).toString());
+				prov.setText(model.getValueAt(i, 2).toString());
+				mun.setText(model.getValueAt(i, 3).toString());
+				crop.setText(model.getValueAt(i, 4).toString());
+				mkrate.setText(model.getValueAt(i, 5).toString());
+				fmrate.setText(model.getValueAt(i, 6).toString());
 				
 				
 			}
 		});
 		model = new DefaultTableModel();
-		Object[] column = {"Province","Municipality","Crops","Market Rate","Farmers rate"};
-		final Object[] row = new Object[5];
+		Object[] column = {"Full Name", "No. of Family","Province","Municipality","Crops","Market Rate","Farmers rate"};
+		final Object[] row = new Object[7];
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
 		scrollPane.setViewportView(table);
@@ -166,13 +170,17 @@ public class AdminSection {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-				row[0]= prov.getText();
-				row[1]= mun.getText();
-				row[2]= crop.getText();
-				row[3]= mkrate.getText();
-				row[4]= fmrate.getText();
+			    row[0]= fname.getText();
+			    row[1]= nmfamily.getText();
+				row[2]= prov.getText();
+				row[3]= mun.getText();
+				row[4]= crop.getText();
+				row[5]= mkrate.getText();
+				row[6]= fmrate.getText();
 				model.addRow(row);
 				
+				fname.setText("");
+				nmfamily.setText("");
 				prov.setText("");
 				mun.setText("");
 				crop.setText("");
@@ -191,11 +199,13 @@ public class AdminSection {
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = table.getSelectedRow();
-				model.setValueAt(prov.getText(), i ,0);
-				model.setValueAt(mun.getText(), i ,1);
-				model.setValueAt(crop.getText(), i ,2);
-				model.setValueAt(mkrate.getText(), i ,3);
-				model.setValueAt(fmrate.getText(), i ,4);
+				model.setValueAt(fname.getText(), i ,0);
+				model.setValueAt(nmfamily.getText(), i ,1);
+				model.setValueAt(prov.getText(), i ,2);
+				model.setValueAt(mun.getText(), i ,3);
+				model.setValueAt(crop.getText(), i ,4);
+				model.setValueAt(mkrate.getText(), i ,5);
+				model.setValueAt(fmrate.getText(), i ,6);
 				JOptionPane.showMessageDialog(null,"Updated");
 				
 				
@@ -219,6 +229,8 @@ public class AdminSection {
 		JButton btnClearl = new JButton("Clear");
 		btnClearl.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				fname.setText("");
+				nmfamily.setText("");
 				prov.setText("");
 				mun.setText("");
 				crop.setText("");
@@ -235,6 +247,28 @@ public class AdminSection {
 		AIMS.setForeground(new Color(255, 255, 0));
 		AIMS.setBounds(141, 27, 627, 46);
 		panel.add(AIMS);
+		
+		JLabel lblFullName = new JLabel("Full Name");
+		lblFullName.setForeground(Color.WHITE);
+		lblFullName.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lblFullName.setBounds(20, 145, 102, 27);
+		panel.add(lblFullName);
+		
+		JLabel noofFamily = new JLabel("No. of Family");
+		noofFamily.setForeground(Color.WHITE);
+		noofFamily.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		noofFamily.setBounds(20, 173, 119, 27);
+		panel.add(noofFamily);
+		
+		nmfamily = new JTextField();
+		nmfamily.setColumns(10);
+		nmfamily.setBounds(143, 173, 137, 27);
+		panel.add(nmfamily);
+		
+		fname = new JTextField();
+		fname.setColumns(10);
+		fname.setBounds(143, 139, 137, 27);
+		panel.add(fname);
 	}
 
 	public void setVisible(boolean b) {
