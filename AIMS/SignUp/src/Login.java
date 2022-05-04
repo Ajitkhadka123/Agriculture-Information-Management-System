@@ -17,6 +17,11 @@ import javax.swing.Box;
 import javax.swing.border.LineBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
+import javax.swing.JSpinner;
 
 public class Login extends JFrame {
 	private Image img_login = new ImageIcon(Login.class.getResource("/img/LoginPhoto.png")).getImage().getScaledInstance(350,300, Image.SCALE_SMOOTH);
@@ -28,6 +33,8 @@ public class Login extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+	
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -58,7 +65,7 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 		
 		//guest button
-		JButton GuestLoginBut = new JButton("Guest");
+		JButton GuestLoginBut = new JButton("Municipality");
 		GuestLoginBut.addMouseListener(new MouseAdapter() {
 			
 			public void mouseEntered(MouseEvent e) {
@@ -72,7 +79,7 @@ public class Login extends JFrame {
 			
 			public void mouseClicked(MouseEvent e) {
 				Login.this.dispose();
-				Dash dashboard = new Dash();
+				MunicipalityLogin dashboard = new MunicipalityLogin();
 				dashboard.setVisible(true);
 			}
 		});
@@ -81,7 +88,7 @@ public class Login extends JFrame {
 			}
 		});
 		GuestLoginBut.setFont(new Font("Arial", Font.BOLD, 14));
-		GuestLoginBut.setBounds(242, 410, 89, 31);
+		GuestLoginBut.setBounds(215, 410, 123, 31);
 		contentPane.add(GuestLoginBut);
 		
 		//admin button
@@ -107,7 +114,7 @@ public class Login extends JFrame {
 			}
 		});
 		AdminLoginBut.setFont(new Font("Arial", Font.BOLD, 14));
-		AdminLoginBut.setBounds(365, 410, 89, 31);
+		AdminLoginBut.setBounds(377, 410, 89, 31);
 		contentPane.add(AdminLoginBut);
 		
 		//image
@@ -130,13 +137,36 @@ public class Login extends JFrame {
 		verticalBox.setBounds(0, 76, 686, 3);
 		contentPane.add(verticalBox);
 		
+		
+//		String getRandomValue(String[] array ) {
+//			String result = new Random().nextString(array.length);
+//		    return array[result];
+		
+		 Random rand = new Random();
+		    List<String> givenList = Arrays.asList("                        Intercropping can be used to increase production rate",
+		    		"                            Test your soil to find the sutaible crops for harvesting.",
+		    		"                Use Grafting process for inhancing hybrid breeding",
+		    		"                            Always use fresh seed for better germination rate"
+		    		);
+
+		    int numberOfElements = 1;
+
+		    for (int i = 0; i < numberOfElements; i++) {
+		        int randomIndex = rand.nextInt(givenList.size());
+		        String randomElement = givenList.get(randomIndex);
+		    
+	
+		
 		//text
-		JLabel lblNewLabel_1 = new JLabel("Software for Provinces to track the record of farmer's production, amount and quantity.");
+		JLabel lblNewLabel_1 = new JLabel(randomElement);
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 16));
 		lblNewLabel_1.setBounds(42, 369, 610, 31);
 		contentPane.add(lblNewLabel_1);
 		
+		}
+		
+		 
 		
 
 		
