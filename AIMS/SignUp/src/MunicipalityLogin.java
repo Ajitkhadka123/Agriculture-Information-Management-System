@@ -54,7 +54,7 @@ public class MunicipalityLogin extends JFrame {
 		
 		//exit
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 700, 450);
+		setBounds(500, 200, 700, 450);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(85, 107, 47));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -140,7 +140,7 @@ public class MunicipalityLogin extends JFrame {
 		JLabel lblNewLabel = new JLabel("Municipality Login");
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 20));
-		lblNewLabel.setBounds(67, 89, 195, 58);
+		lblNewLabel.setBounds(50, 89, 195, 58);
 		contentPane.add(lblNewLabel);
 		
 		Box verticalBox = Box.createVerticalBox();
