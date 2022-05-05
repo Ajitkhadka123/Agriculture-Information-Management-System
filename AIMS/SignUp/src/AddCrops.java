@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextPane;
 
 public class AddCrops extends JFrame {
 
@@ -60,7 +61,7 @@ public class AddCrops extends JFrame {
 		//creating methods for lables and textfields
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 700);
+		setBounds(100, 100, 1400, 700);
 		//setUndecorated(true);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(85, 107, 47));
@@ -105,7 +106,7 @@ public class AddCrops extends JFrame {
 			
 			}
 		});
-		PrintButton.setBounds(774, 111, 89, 31);
+		PrintButton.setBounds(1272, 158, 89, 31);
 		contentPane.add(PrintButton);
 		
 		JLabel label = new JLabel("New label");
@@ -139,17 +140,18 @@ public class AddCrops extends JFrame {
 		JLabel lblAddCropSection = new JLabel("Add Crop Section");
 		lblAddCropSection.setForeground(Color.WHITE);
 		lblAddCropSection.setFont(new Font("Arial", Font.BOLD, 28));
-		lblAddCropSection.setBounds(337, 17, 247, 58);
+		lblAddCropSection.setBounds(533, 17, 247, 58);
 		contentPane.add(lblAddCropSection);
 		
 		Box verticalBox = Box.createVerticalBox();
 		verticalBox.setBorder(new LineBorder(new Color(255, 215, 0), 9));
 		verticalBox.setBackground(new Color(255, 215, 0));
-		verticalBox.setBounds(0, 85, 886, 3);
+		verticalBox.setBounds(0, 85, 1386, 3);
 		contentPane.add(verticalBox);
 
 		
 		CropTextfield = new JTextField();
+		CropTextfield.setFont(new Font("Arial", Font.PLAIN, 16));
 		CropTextfield.setBounds(38, 220, 175, 29);
 		contentPane.add(CropTextfield);
 		CropTextfield.setColumns(10);
@@ -164,8 +166,8 @@ public class AddCrops extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int i = table.getSelectedRow();
-//				comboBoxP.setText(model.getValueAt(i, 0).toString());
-				CropTextfield.setText(model.getValueAt(i, 1).toString());
+				CropTextfield.setText(model.getValueAt(i, 0).toString());
+    			comboBoxP.setSelectedItem(model.getValueAt(i, 1).toString());
 				FarmerR.setText(model.getValueAt(i, 2).toString());
 				MarketB.setText(model.getValueAt(i, 3).toString());
 				
@@ -173,24 +175,26 @@ public class AddCrops extends JFrame {
 			}
 		});
 		model = new DefaultTableModel();
-		Object[] column = {"Province","Municipality","Crops","Market Rate","Farmers rate"};
+		Object[] column = {"Crops","Production","Farmers Rate","Market rate"};
 		final Object[] row = new Object[4];
 		model.setColumnIdentifiers(column);
 		table.setModel(model);
 		scrollPane.setViewportView(table);
+		
+		//add
 		
 		JButton btnNewButton = new JButton("Add");
 		btnNewButton.setFont(new Font("Arial", Font.BOLD, 14));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-//				row[0]= comboBoxP.getText();
-				row[1]= CropTextfield.getText();
+				row[0]= CropTextfield.getText();
+				row[1]= comboBoxP.getSelectedItem();
 				row[2]= FarmerR.getText();
 				row[3]= MarketB.getText();
 				model.addRow(row);
 				
-//				comboBoxP.setText("");
+ 				comboBoxP.setSelectedItem("");
 				CropTextfield.setText("");
 				FarmerR.setText("");
 				MarketB.setText("");
@@ -209,13 +213,11 @@ public class AddCrops extends JFrame {
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int i = table.getSelectedRow();
-//				model.setValueAt(comboBoxP.getText(), i ,0);
-				model.setValueAt(CropTextfield.getText(), i ,1);
+				model.setValueAt(CropTextfield.getText(), i ,0);
+				model.setValueAt(comboBoxP.getSelectedItem(), i ,1);
 				model.setValueAt(FarmerR.getText(), i ,2);
 				model.setValueAt(MarketB.getText(), i ,3);
-				JOptionPane.showMessageDialog(null,"Updated");
-				
-				
+				JOptionPane.showMessageDialog(null,"Updated");		
 				
 			}
 		});
@@ -234,35 +236,22 @@ public class AddCrops extends JFrame {
 		btnDelete.setBounds(774, 283, 89, 32);
 		contentPane.add(btnDelete);
 		
-		JButton btnClearl = new JButton("Clear");
-		btnClearl.setFont(new Font("Arial", Font.BOLD, 14));
-		btnClearl.addActionListener(new ActionListener() {
+		
+		// clear
+		
+		JButton clearb = new JButton("Clear");
+		clearb.setFont(new Font("Arial", Font.BOLD, 14));
+		clearb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-//				comboBoxP.setText("");
 				CropTextfield.setText("");
+				comboBoxP.setSelectedItem("");
 				FarmerR.setText("");
 				MarketB.setText("");
-				JOptionPane.showMessageDialog(null,"Cleared");
+				JOptionPane.showMessageDialog(null,"Cleared");		
 			}
 		});
-		btnClearl.setBounds(668, 283, 89, 31);
-		contentPane.add(btnClearl);
-	}
-
-	public void setVisible(boolean b) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public JFrame getFrame() {
-		return frame;
-	}
-
-	public void setFrame(JFrame frame) {
-		this.frame = frame;
-	
-	
-
+		clearb.setBounds(668, 283, 89, 31);
+		contentPane.add(clearb);
 		
 		// back button
 		
@@ -292,23 +281,33 @@ public class AddCrops extends JFrame {
 		contentPane.add(Back);
 		Back.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("Fill up details in below boxes and press add to add details and for deleting crops select crop name ");
+		JLabel lblNewLabel_1 = new JLabel("Fill up details in below boxes and press add to add details and for deleting crops select crop name from the list and press delete.");
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 16));
-		lblNewLabel_1.setBounds(38, 98, 836, 31);
+		lblNewLabel_1.setBounds(195, 98, 1041, 31);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("from the list and press delete.");
-		lblNewLabel_1_1.setForeground(Color.WHITE);
-		lblNewLabel_1_1.setFont(new Font("Arial", Font.PLAIN, 16));
-		lblNewLabel_1_1.setBounds(38, 128, 760, 25);
-		contentPane.add(lblNewLabel_1_1);
+		JTextPane textPane = new JTextPane();
+		textPane.setBounds(892, 199, 469, 454);
+		contentPane.add(textPane);
+		
+		JLabel lblNewLabel = new JLabel("Add crops");
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 18));
+		lblNewLabel.setBounds(38, 139, 128, 31);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblPrintData = new JLabel("Print data");
+		lblPrintData.setForeground(Color.WHITE);
+		lblPrintData.setFont(new Font("Arial", Font.BOLD, 18));
+		lblPrintData.setBounds(892, 139, 128, 31);
+		contentPane.add(lblPrintData);
 		
 		
 		
-		JList list = new JList();
-		list.setBounds(38, 349, 706, 284);
-		contentPane.add(list);
+//		JList list = new JList();
+//		list.setBounds(38, 349, 706, 284);
+//		contentPane.add(list);
 		
 		
 	}
