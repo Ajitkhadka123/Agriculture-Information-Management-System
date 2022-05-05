@@ -22,9 +22,10 @@ import java.util.List;
 import java.util.Random;
 
 import javax.swing.JSpinner;
+import javax.swing.JPasswordField;
 
 public class Login extends JFrame {
-	private Image img_login = new ImageIcon(Login.class.getResource("/img/LoginPhoto.png")).getImage().getScaledInstance(350,300, Image.SCALE_SMOOTH);
+	private Image img_login = new ImageIcon(Login.class.getResource("img/LoginPhoto.png")).getImage().getScaledInstance(350,300, Image.SCALE_SMOOTH);
     
 
 	private JPanel contentPane;
@@ -57,7 +58,7 @@ public class Login extends JFrame {
 		
 		//exit
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 700, 500);
+		setBounds(400, 100, 700, 552);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(85, 107, 47));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -88,7 +89,7 @@ public class Login extends JFrame {
 			}
 		});
 		GuestLoginBut.setFont(new Font("Arial", Font.BOLD, 14));
-		GuestLoginBut.setBounds(215, 410, 123, 31);
+		GuestLoginBut.setBounds(220, 465, 123, 31);
 		contentPane.add(GuestLoginBut);
 		
 		//admin button
@@ -114,7 +115,7 @@ public class Login extends JFrame {
 			}
 		});
 		AdminLoginBut.setFont(new Font("Arial", Font.BOLD, 14));
-		AdminLoginBut.setBounds(377, 410, 89, 31);
+		AdminLoginBut.setBounds(367, 465, 89, 31);
 		contentPane.add(AdminLoginBut);
 		
 		//image
@@ -137,15 +138,21 @@ public class Login extends JFrame {
 		verticalBox.setBounds(0, 76, 686, 3);
 		contentPane.add(verticalBox);
 		
+		JLabel lblLoginAs = new JLabel("Login As");
+		lblLoginAs.setForeground(Color.WHITE);
+		lblLoginAs.setFont(new Font("Arial", Font.BOLD, 18));
+		lblLoginAs.setBounds(306, 410, 89, 58);
+		contentPane.add(lblLoginAs);
+		
 		
 //		String getRandomValue(String[] array ) {
 //			String result = new Random().nextString(array.length);
 //		    return array[result];
 		
 		 Random rand = new Random();
-		    List<String> givenList = Arrays.asList("                        Intercropping can be used to increase production rate",
+		    List<String> givenList = Arrays.asList("                          Intercropping can be used to increase production rate",
 		    		"                            Test your soil to find the sutaible crops for harvesting.",
-		    		"                Use Grafting process for inhancing hybrid breeding",
+		    		"                           Use Grafting process for inhancing hybrid breeding",
 		    		"                            Always use fresh seed for better germination rate"
 		    		);
 
