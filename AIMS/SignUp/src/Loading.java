@@ -38,7 +38,7 @@ public class Loading extends JFrame {
                 Loading.lblNewLabel_1.setText(Integer.toString(i)+" %");
                 if(i==100) {
                     frame.dispose();
-                    MainLogin log = new MainLogin();
+                    Login log = new Login();
                     log.setVisible(true);
                 }
             }
