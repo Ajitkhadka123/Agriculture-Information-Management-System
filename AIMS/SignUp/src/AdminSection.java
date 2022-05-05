@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JTextPane;
 
 
 public class AdminSection {
@@ -37,6 +38,8 @@ public class AdminSection {
 	DefaultTableModel model;
 	private JTextField nmfamily;
 	private JTextField fname;
+
+	private JTextPane textPane;
 
 	/**
 	 * Launch the application.
@@ -170,6 +173,7 @@ public class AdminSection {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					String name = fname.getText();
 			    row[0]= fname.getText();
 			    row[1]= nmfamily.getText();
 				row[2]= prov.getText();
@@ -179,7 +183,8 @@ public class AdminSection {
 				row[6]= fmrate.getText();
 				model.addRow(row);
 				
-				fname.setText("");
+				//fname.setText("");
+				textPane.setText(name);
 				nmfamily.setText("");
 				prov.setText("");
 				mun.setText("");
@@ -269,6 +274,11 @@ public class AdminSection {
 		fname.setColumns(10);
 		fname.setBounds(143, 139, 137, 27);
 		panel.add(fname);
+		
+//		 textPane = new JTextPane();
+//		 textPane.setEditable(false);
+//		textPane.setBounds(382, 84, 94, 20);
+//		panel.add(textPane);
 	}
 
 	public void setVisible(boolean b) {
