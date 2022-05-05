@@ -18,6 +18,7 @@ import javax.swing.border.LineBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 
 public class AdminLogin extends JFrame {
 
@@ -25,9 +26,9 @@ public class AdminLogin extends JFrame {
     
 
 	private JPanel contentPane;
-	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField Back;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -55,7 +56,7 @@ public class AdminLogin extends JFrame {
 		
 		//exit
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 700, 450);
+		setBounds(500, 200, 700, 450);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(85, 107, 47));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -77,8 +78,8 @@ public class AdminLogin extends JFrame {
 			
 			public void mouseClicked(MouseEvent e) {
 				AdminLogin.this.dispose();
-				AdminDashboard Adashboard = new AdminDashboard();
-				Adashboard.frame.setVisible(true);
+				AdminSection Adashboard = new AdminSection();
+				Adashboard.setVisible(true);
 			}
 		});
 		AdminLoginB.addActionListener(new ActionListener() {
@@ -135,12 +136,6 @@ public class AdminLogin extends JFrame {
 		verticalBox.setBounds(0, 76, 686, 3);
 		contentPane.add(verticalBox);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Arial", Font.PLAIN, 16));
-		textField.setColumns(10);
-		textField.setBounds(50, 281, 224, 31);
-		contentPane.add(textField);
-		
 		JLabel lblCrops_1 = new JLabel("Username or Email");
 		lblCrops_1.setForeground(Color.WHITE);
 		lblCrops_1.setFont(new Font("Calibri", Font.PLAIN, 20));
@@ -189,6 +184,10 @@ public class AdminLogin extends JFrame {
 		Back.setBounds(10, 26, 42, 19);
 		contentPane.add(Back);
 		Back.setColumns(10);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(50, 281, 224, 31);
+		contentPane.add(passwordField);
 	}
 }
 	
