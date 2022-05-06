@@ -45,6 +45,14 @@ public class AddCrops extends JFrame {
 	private JTextField Quantity;
 	private JTextField id;
 	private JTextField noofbox;
+	String ID;
+	String Name;
+	String Noofbox;
+	String Crop;
+	String quantity;
+	String production;
+	String farmerRate;
+	String marketRate;
 	long first4;
 	long first;
 	
@@ -109,6 +117,12 @@ public class AddCrops extends JFrame {
 		lblFarmersRate.setBounds(688, 180, 144, 25);
 		contentPane.add(lblFarmersRate);
 		
+		JTextPane textPane = new JTextPane();
+		textPane.setFont(new Font("Arial", Font.PLAIN, 16));
+		textPane.setBounds(892, 199, 469, 572);
+		contentPane.add(textPane);
+		
+		
 		JButton PrintButton = new JButton("Print");             //creating save button
 		PrintButton.addMouseListener(new MouseAdapter() {
 			@Override
@@ -125,6 +139,13 @@ public class AddCrops extends JFrame {
 		PrintButton.setFont(new Font("Arial", Font.BOLD, 14));
 		PrintButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				 try {
+                     textPane.print();
+                    
+                     JOptionPane.showMessageDialog(null, "Successfully Printed!!!");
+                 } catch (Exception e2) {
+                     JOptionPane.showMessageDialog(null, e2);
+                 }
 			
 			}
 		});
@@ -214,6 +235,19 @@ public class AddCrops extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					
+				
+				
+			    ID = id.getText();
+			    Name = name.getText();
+			    Noofbox = noofbox.getText();
+			    Crop = crop.getText();
+			    quantity = Quantity.getText();
+			    production = (String) comboBoxP.getSelectedItem();
+			    farmerRate = FarmerR.getText();
+			    marketRate = MarketB.getText();
+					
+					
 				row[0]= id.getText();
 				row[1]= name.getText();
 				row[2]= noofbox.getText();
@@ -224,6 +258,25 @@ public class AddCrops extends JFrame {
 				row[7]= MarketB.getText();
 				model.addRow(row);
 				
+			    textPane.setText("------------------------------------------------------------------------------------------------------------\n");
+	            textPane.setText(textPane.getText()+"                        Agricultural record of Municipality\n");
+	            textPane.setText(textPane.getText()+"-------------------------------------------------------------------------------------------------\n");
+	            textPane.setText(textPane.getText()+"Farmer Name : " +Name+"\n");
+	            textPane.setText(textPane.getText()+"ID                  : " +ID+"\n");
+                textPane.setText(textPane.getText()+"No. of family   : " +Noofbox+"\n");
+	            textPane.setText(textPane.getText()+"Crop              : " +Crop+"\n");
+	            textPane.setText(textPane.getText()+"Quantity         : "+quantity+"\n");
+                textPane.setText(textPane.getText()+"Production      : "+production+"\n");
+	            textPane.setText(textPane.getText()+"Farmer Price  : " +farmerRate+"\n");
+                textPane.setText(textPane.getText()+"Market Price  : " +marketRate+"\n");
+                textPane.setText(textPane.getText()+"Date              : "+"2079/ /"+"\n");
+//              textPane.setText(textPane.getText()+"Issued By          : "+ +" Municipality"+"\n");
+	                
+	                
+	       
+	            textPane.setText(textPane.getText()+"\nSignature       :                   \n");
+				 
+				
  				id.setText("");
 				name.setText("");
 				noofbox.setText("");
@@ -232,11 +285,14 @@ public class AddCrops extends JFrame {
 				comboBoxP.setSelectedItem("");
 				FarmerR.setText("");
 				MarketB.setText("");
-				JOptionPane.showMessageDialog(null,"Saved");
+				JOptionPane.showMessageDialog(null,"Added");
 				}catch(Exception E) {
 					System.out.println(E);
 				}
 				Random();
+				
+				
+				
 			}
 		});
 		btnNewButton.setBounds(38, 398, 89, 31);
@@ -333,9 +389,6 @@ public class AddCrops extends JFrame {
 		lblNewLabel_1.setBounds(195, 98, 1041, 31);
 		contentPane.add(lblNewLabel_1);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(892, 199, 469, 572);
-		contentPane.add(textPane);
 		
 		JLabel lblNewLabel = new JLabel("Farmer Details");
 		lblNewLabel.setForeground(Color.WHITE);
