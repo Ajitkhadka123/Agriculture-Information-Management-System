@@ -1,3 +1,4 @@
+package agriculture;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -10,18 +11,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Random;
+import java.io.File;
 import java.awt.Dimension;
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.Rectangle;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -30,11 +29,12 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 
+
 public class Dash extends JFrame {
      //inserting image
-	private Image img_logo = new ImageIcon(Login.class.getResource("/img/AgricultureOutlook.png")).getImage().getScaledInstance(300,300, Image.SCALE_SMOOTH);
-	private Image logo = new ImageIcon(Login.class.getResource("/img/corpslogo.png")).getImage().getScaledInstance(50,50, Image.SCALE_SMOOTH);
-    
+	private Image img_logo = new ImageIcon(Login.class.getResource("/AgricultureOutlook.png")).getImage().getScaledInstance(300,300, Image.SCALE_SMOOTH);
+	private Image logo = new ImageIcon(Login.class.getResource("/corpslogo.png")).getImage().getScaledInstance(50,50, Image.SCALE_SMOOTH);
+    Desktop desktop;
 	private JPanel contentPane;
 	private JLabel lblMunicipality;          //initiating textfields and lables
 	private JTextField Municipalitybox;
@@ -43,7 +43,9 @@ public class Dash extends JFrame {
 	long first4;
 	long first;
 	
-	String name;
+	static String name=null;
+	private JButton btnAddCrops;
+	private JComboBox<String> provincebox;
 	
 	//generating random numbers
 
@@ -63,7 +65,7 @@ public class Dash extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Dash frame = new Dash();
+					Dash frame = new Dash(name);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -75,11 +77,12 @@ public class Dash extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Dash() {
+	public Dash(String name) {
+		this.name=name;
 		setResizable(false);
 		setMaximumSize(new Dimension(0, 0));
 		setBounds(new Rectangle(2, 2, 793, 5960));
-		Random();
+		
 		
 	// creating an object for all lables and textfields 
 		
@@ -127,6 +130,7 @@ public class Dash extends JFrame {
 		Municipalitybox.setColumns(10);
 		Municipalitybox.setBounds(416, 591, 200, 31);
 		contentPane.add(Municipalitybox);
+		Municipalitybox.setText(name);
 		
 		JPanel panel = new JPanel();
 		panel.setBounds(20, 10, 51, 45);
@@ -159,8 +163,7 @@ public class Dash extends JFrame {
 		panel.add(Back);
 		Back.setColumns(10);
 		
-		
-		JButton btnAddCrops = new JButton("Add crops ");
+		btnAddCrops = new JButton("Add crops ");
 		btnAddCrops.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				btnAddCrops.setForeground(Color.RED);
@@ -179,7 +182,9 @@ public class Dash extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (e.getSource()==btnAddCrops){
 					try {
-						new AddCrops().setVisible(true);
+						String prov=(String) provincebox.getSelectedItem();;
+						String muni=Municipalitybox.getText();
+						new AddCrops(prov,muni).setVisible(true);
 						Dash.this.dispose();
 					}catch(Exception E){
 						System.out.print("Can't add");
@@ -220,11 +225,17 @@ public class Dash extends JFrame {
 //		btnSave.setBounds(80, 332, 93, 31);
 //		contentPane.add(btnSave);
 //	    
-	    JComboBox provincebox = new JComboBox();
+	    provincebox = new JComboBox<String>();
 	    provincebox.setFont(new Font("Arial", Font.PLAIN, 16));
-	    provincebox.setModel(new DefaultComboBoxModel(new String[] {"Koshi ", "Madhesh ", "Bagmati ", "Gandaki", "Lumbini", "Karnali", "Sudur Paschim"}));
+	    provincebox.setModel(new DefaultComboBoxModel<String>(new String[] {"Koshi ", "Madhesh ", "Bagmati ", "Gandaki", "Lumbini", "Karnali", "Sudur Paschim"}));
 	    provincebox.setBounds(174, 591, 200, 31);
 	    contentPane.add(provincebox);
+	    
+	    if(name.equals("Kathmandu") ||name.equals("Lalitpur") || name.equals("Bhaktapur")|| name.equals("Bhaktapur") || name.equals("Chitwan") ) {
+	    	provincebox.setSelectedIndex(2);
+	    }else if(name.equals("Lamjung") ||name.equals("Tanahun") || name.equals("Kaski") ) {
+	    	provincebox.setSelectedIndex(3);
+	    }
 	    
 	    JLabel lblNewLabel = new JLabel("Agriculture Information Management System");
 	    lblNewLabel.setForeground(Color.WHITE);
@@ -232,7 +243,7 @@ public class Dash extends JFrame {
 	    lblNewLabel.setBounds(76, 100, 672, 58);
 	    contentPane.add(lblNewLabel);
 	    
-	    JLabel lblNewLabel_1 = new JLabel("Please make sure you are logined in to correct municipality by checking the following details");
+	    JLabel lblNewLabel_1 = new JLabel("Please make sure you are logged in to correct municipality by checking the following details");
 	    lblNewLabel_1.setForeground(Color.WHITE);
 	    lblNewLabel_1.setFont(new Font("Arial", Font.PLAIN, 16));
 	    lblNewLabel_1.setBounds(76, 489, 650, 45);
@@ -251,23 +262,46 @@ public class Dash extends JFrame {
 	    contentPane.add(lblHompage);
 	    
 	    JButton btnLogout = new JButton("Logout");
+	    btnLogout.addMouseListener(new MouseAdapter() {
+	    	@Override
+	    	public void mouseClicked(MouseEvent e) {
+	    		Dash.this.dispose();
+				MunicipalityLogin UserLogin = new MunicipalityLogin();
+				UserLogin.setVisible(true);
+			}
+			public void mouseEntered(MouseEvent e) {
+				btnLogout.setForeground(Color.RED);
+			}
+			public void mouseExited(MouseEvent e) {
+				btnLogout.setForeground(Color.BLACK);
+			}
+	    });
 	    btnLogout.setForeground(Color.BLACK);
 	    btnLogout.setFont(new Font("Arial", Font.BOLD, 14));
 	    btnLogout.setBackground(Color.WHITE);
-	    btnLogout.setBounds(416, 661, 140, 31);
+	    btnLogout.setBounds(608, 35, 140, 31);
 	    contentPane.add(btnLogout);
 	    
-	   
-	    
-	    
-	    
-	    
-	    
-	  
-	    
-	    
-	 
-		
+	    JButton btnViewCrops = new JButton("View crops");
+	    btnViewCrops.addActionListener(new ActionListener() {
+	    	public void actionPerformed(ActionEvent e) {
+	    		
+	    		try{
+	    			File file = new File ("C:\\csv\\test.csv");
+	                desktop = Desktop.getDesktop();   
+	                desktop.open(file);
+	               
+	    		}
+	    		catch(Exception E){
+	    			E.printStackTrace();
+	    		}
+	    	}
+	    });
+	    btnViewCrops.setForeground(Color.BLACK);
+	    btnViewCrops.setFont(new Font("Arial", Font.BOLD, 14));
+	    btnViewCrops.setBackground(Color.WHITE);
+	    btnViewCrops.setBounds(416, 661, 140, 31);
+	    contentPane.add(btnViewCrops);
 		
 	}
 }
