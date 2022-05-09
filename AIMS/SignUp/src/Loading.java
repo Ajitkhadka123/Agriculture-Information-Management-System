@@ -1,5 +1,6 @@
+package agriculture;
+
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -16,9 +17,12 @@ public class Loading extends JFrame {
 	private JFrame window;
 	
 	
+	
 	//	ImageIcon icon = new ImageIcon("img/icon-crop.png");
     //  for jar file
-	ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("img/icon-crop.png"));
+//	ImageIcon icon = new ImageIcon(getClass().getClassLoader().getResource("img/icon-crop.png"));
+	
+	ImageIcon icon = new ImageIcon(this.getClass().getResource("/loadingg.jpg"));
 
 
 
@@ -54,8 +58,9 @@ public class Loading extends JFrame {
 	 */
 	public Loading() {
 		
-		window = new JFrame();
-		window.setIconImage(icon.getImage());
+		 window = new JFrame();
+		 window.setIconImage(icon.getImage());
+			
 		
 		//design behind image and height width
 		setUndecorated(true);
@@ -70,15 +75,18 @@ public class Loading extends JFrame {
         //loading image
         JLabel lblNewLabel = new JLabel("New label");
         lblNewLabel.setBackground(new Color(255, 255, 255));
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("img/loadingg.jpg"));
+        
         lblNewLabel.setIcon(icon);
         lblNewLabel.setBounds(0, 0, 800, 400);
         contentPane.add(lblNewLabel);
+        
+       
+		
 
         //progress bar
         progressBar = new JProgressBar();
-        progressBar.setForeground(Color.ORANGE);
-        progressBar.setBackground(Color.PINK);
+        progressBar.setForeground(Color.GREEN);
+        progressBar.setBackground(Color.ORANGE);
         progressBar.setBounds(0, 390, 800, 11);
         contentPane.add(progressBar);
         
