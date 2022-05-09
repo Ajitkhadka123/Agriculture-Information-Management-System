@@ -1,3 +1,4 @@
+package agriculture;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -24,11 +25,17 @@ import java.util.Random;
 import javax.swing.JSpinner;
 import javax.swing.JPasswordField;
 
+
+
+
 public class Login extends JFrame {
-	private Image img_login = new ImageIcon(Login.class.getResource("img/LoginPhoto.png")).getImage().getScaledInstance(350,300, Image.SCALE_SMOOTH);
+	private Image img_login = new ImageIcon(Login.class.getResource("/LoginPhoto.png")).getImage().getScaledInstance(350,300, Image.SCALE_SMOOTH);
     
 
 	private JPanel contentPane;
+	JButton AdminLoginBut;
+
+	private JButton GuestLoginBut;
 
 	/**
 	 * Launch the application.
@@ -66,7 +73,7 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 		
 		//guest button
-		JButton GuestLoginBut = new JButton("Municipality");
+		GuestLoginBut = new JButton("Municipality");
 		GuestLoginBut.addMouseListener(new MouseAdapter() {
 			
 			public void mouseEntered(MouseEvent e) {
@@ -89,11 +96,11 @@ public class Login extends JFrame {
 			}
 		});
 		GuestLoginBut.setFont(new Font("Arial", Font.BOLD, 14));
-		GuestLoginBut.setBounds(220, 465, 123, 31);
+		GuestLoginBut.setBounds(195, 437, 123, 31);
 		contentPane.add(GuestLoginBut);
 		
 		//admin button
-		JButton AdminLoginBut = new JButton("Admin");
+		AdminLoginBut = new JButton("Admin");
 		AdminLoginBut.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				AdminLoginBut.setForeground(Color.RED);
@@ -115,7 +122,7 @@ public class Login extends JFrame {
 			}
 		});
 		AdminLoginBut.setFont(new Font("Arial", Font.BOLD, 14));
-		AdminLoginBut.setBounds(367, 465, 89, 31);
+		AdminLoginBut.setBounds(363, 437, 89, 31);
 		contentPane.add(AdminLoginBut);
 		
 		//image
@@ -141,7 +148,7 @@ public class Login extends JFrame {
 		JLabel lblLoginAs = new JLabel("Login As");
 		lblLoginAs.setForeground(Color.WHITE);
 		lblLoginAs.setFont(new Font("Arial", Font.BOLD, 18));
-		lblLoginAs.setBounds(306, 410, 89, 58);
+		lblLoginAs.setBounds(301, 387, 89, 58);
 		contentPane.add(lblLoginAs);
 		
 		
