@@ -30,12 +30,13 @@ import java.awt.event.MouseEvent;
 import javax.swing.JScrollBar;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import javax.swing.JPasswordField;
 
 public class CreateAccount {
 
 	private JFrame frame;
 	private JTextField usernametextField;
-	private JTextField passwordField;
+	private JTextField passwordField_1;
 	Connection connect = null;
 	private Image img_logo = new ImageIcon(AdminSection.class.getResource("/corpslogo.png")).getImage()
 			.getScaledInstance(90,90 , Image.SCALE_SMOOTH);
@@ -43,6 +44,7 @@ public class CreateAccount {
 	DefaultTableModel model;
 	String Username, Password;
 	private JTable table_2;
+	
 	
 	/**
 	 * Launch the application.
@@ -102,10 +104,11 @@ public class CreateAccount {
 		getFrame().getContentPane().add(usernametextField);
 		usernametextField.setColumns(10);
 		
-		passwordField = new JTextField();
-		passwordField.setColumns(10);
-		passwordField.setBounds(108, 347, 227, 34);
-		getFrame().getContentPane().add(passwordField);
+		passwordField_1 = new JPasswordField();
+		passwordField_1.setBounds(108, 344, 227, 34);
+		frame.getContentPane().add(passwordField_1);
+		
+		getFrame().getContentPane().add(passwordField_1);
 		
 		JLabel lblNewLabel = new JLabel("Username");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
@@ -134,7 +137,7 @@ public class CreateAccount {
 			public void mouseClicked(MouseEvent e) {
 				int i = table_2.getSelectedRow();
 				usernametextField.setText(table_2.getValueAt(i, 0).toString());
-				passwordField.setText(table_2.getValueAt(i, 1).toString());
+				passwordField_1.setText(table_2.getValueAt(i, 1).toString());
 				
 
 			}
@@ -156,7 +159,7 @@ public class CreateAccount {
 				try {
 					
 					Username = usernametextField.getText();
-					Password= passwordField.getText();
+					Password= passwordField_1.getText();
 					
 					String query = "INSERT INTO user (Username, Password) VALUES(?,?)";
 					// create the statement
@@ -190,7 +193,7 @@ public class CreateAccount {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Username = usernametextField.getText();
-					Password = passwordField.getText();
+					Password = passwordField_1.getText();
 					
 					String query = "Update user set Password='" + Password + "' where Username = '" +Username +"'" ;
 					PreparedStatement state = connect.prepareStatement(query);
@@ -212,14 +215,14 @@ public class CreateAccount {
 		btnDelete_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Username = usernametextField.getText();
-				Password = passwordField.getText();
+				Password = passwordField_1.getText();
 				try {
 					String query = "Delete from user where Username = '" +Username + "'";
 					PreparedStatement state = connect.prepareStatement(query);
 					state.execute();
 					state.close();
 					usernametextField.setText("");
-					passwordField.setText("");
+					passwordField_1.setText("");
 				
 					JOptionPane.showMessageDialog(null, "Deleted");
 				} catch (Exception e2) {
@@ -234,7 +237,7 @@ public class CreateAccount {
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				usernametextField.setText("");
-				passwordField.setText("");
+				passwordField_1.setText("");
 				JOptionPane.showMessageDialog(null, "Cleared");
 			}
 		});
@@ -303,6 +306,7 @@ public class CreateAccount {
 		lblAccounts.setFont(new Font("Calibri", Font.BOLD, 20));
 		lblAccounts.setBounds(392, 98, 91, 22);
 		frame.getContentPane().add(lblAccounts);
+		
 		
 		
 		
