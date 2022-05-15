@@ -23,6 +23,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 
 import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 
 public class ForgotPassword extends JFrame {
 
@@ -90,7 +91,7 @@ public class ForgotPassword extends JFrame {
 		verticalBox.setBounds(0, 76, 686, 3);
 		contentPane.add(verticalBox);
 		
-		pass1field = new JTextField();
+		pass1field = new JPasswordField();
 		pass1field.setFont(new Font("Arial", Font.PLAIN, 16));
 		pass1field.setColumns(10);
 		pass1field.setBounds(50, 281, 224, 31);
@@ -120,13 +121,7 @@ public class ForgotPassword extends JFrame {
 		lblNewLabel_1.setBounds(50, 10, 672, 58);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblCrops_1_1_1 = new JLabel("Confirm Password");
-		lblCrops_1_1_1.setForeground(Color.WHITE);
-		lblCrops_1_1_1.setFont(new Font("Calibri", Font.PLAIN, 20));
-		lblCrops_1_1_1.setBounds(50, 335, 215, 25);
-		contentPane.add(lblCrops_1_1_1);
-		
-		pass2field = new JTextField();
+		pass2field = new JPasswordField();
 		pass2field.setFont(new Font("Arial", Font.PLAIN, 16));
 		pass2field.setColumns(10);
 		pass2field.setBounds(50, 366, 224, 31);
@@ -208,6 +203,12 @@ public class ForgotPassword extends JFrame {
 		Back.setBounds(10, 26, 42, 19);
 		contentPane.add(Back);
 		Back.setColumns(10);
+		
+		JLabel lblCrops_1_1_1_1 = new JLabel("Confirm Password");
+		lblCrops_1_1_1_1.setForeground(Color.WHITE);
+		lblCrops_1_1_1_1.setFont(new Font("Calibri", Font.PLAIN, 20));
+		lblCrops_1_1_1_1.setBounds(50, 331, 215, 25);
+		contentPane.add(lblCrops_1_1_1_1);
 		
 		
 	}
