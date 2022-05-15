@@ -104,7 +104,7 @@ public class CreateAccount {
 		getFrame().getContentPane().add(usernametextField);
 		usernametextField.setColumns(10);
 		
-		passwordField_1 = new JTextField();
+		passwordField_1 = new JPasswordField();
 		passwordField_1.setBounds(108, 344, 227, 34);
 		frame.getContentPane().add(passwordField_1);
 		
